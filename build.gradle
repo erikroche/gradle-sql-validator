@@ -3,7 +3,7 @@ import net.sf.jsqlparser.util.validation.feature.DatabaseType
 plugins {
     id 'java'
     id 'java-gradle-plugin'
-    id 'com.travelport.sql-validator-plugin'
+    id 'com.sql-validator-plugin'
     id 'maven-publish'
 }
 
