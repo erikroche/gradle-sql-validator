@@ -1,0 +1,32 @@
+ValidationError [
+statement=CREATE TLE table;
+capability=parsing
+errors=[ParseException: Cannot parse statement: net.sf.jsqlparser.parser.ParseException: Encountered unexpected token: "CREATE" "CREATE"
+    at line 1, column 1.
+
+Was expecting one of:
+
+    "ALTER"
+    "ANALYZE"
+    "CALL"
+    "COMMENT"
+    "COMMIT"
+    "DECLARE"
+    "DESCRIBE"
+    "DROP"
+    "EXEC"
+    "EXECUTE"
+    "EXPLAIN"
+    "GRANT"
+    "PURGE"
+    "RENAME"
+    "RESET"
+    "ROLLBACK"
+    "SAVEPOINT"
+    "SET"
+    "SHOW"
+    "TRUNCATE"
+    "USE"
+    <ST_SEMICOLON>
+]
+]

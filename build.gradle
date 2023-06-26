@@ -1,0 +1,59 @@
+import net.sf.jsqlparser.util.validation.feature.DatabaseType
+
+plugins {
+    id 'java'
+    id 'java-gradle-plugin'
+    id 'com.travelport.sql-validator-plugin'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+group = 'com.sqlvalidator.test'
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'com.github.jsqlparser:jsqlparser:4.5'
+    implementation gradleApi()
+}
+
+//Define databasetypes you want to validate via the databaseType enum from JSQLParser
+SQLValidation {
+    filesDirectory = "buildSrc/src/main/resources/db/sql-files"
+    databaseTypes = [DatabaseType.MYSQL, DatabaseType.MARIADB]
+}
+
+test {
+    useJUnitPlatform() {
+        includeEngines 'junit-vintage'
+        includeEngines 'junit-jupiter'
+    }
+
+    // Always run tests, even when nothing changed.
+    dependsOn 'cleanTest'
+
+    // Show test results.
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+tasks.register('generateClientJar', Jar) {
+    from(sourceSets.output) {
+    }
+    archiveClassifier = 'test'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'com.sqlvalidator'
+            artifactId 'testing'
+            artifact generateClientJar
+        }
+    }
+}

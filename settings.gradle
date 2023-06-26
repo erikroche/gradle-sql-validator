@@ -1,0 +1,2 @@
+rootProject.name = 'SQL-validator'
+includeBuild("plugin")

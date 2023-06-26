@@ -1,0 +1,1 @@
+CREATE TLE table;
